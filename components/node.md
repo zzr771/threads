@@ -1,0 +1,1 @@
+components文件夹不放在app文件夹里，因为nextjs会根据app文件夹中的结构来生成路由
