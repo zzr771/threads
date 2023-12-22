@@ -7,7 +7,7 @@ import Image from "next/image"
 export default async function Page() {
   const user = await currentUser()
 
-  // 如果用户没登陆，clerk会自动将路由重定向。到哪里？
+  // 如果用户没登陆，clerk会自动将路由重定向到sign-in
   if (!user) return
 
   const userInfo = await fetchUser(user.id)

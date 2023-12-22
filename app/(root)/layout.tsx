@@ -1,3 +1,4 @@
+// layout.tsx文件所创建的UI是不随内部子路由变化而变化的，相当于其所有子路由的公共容器
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"

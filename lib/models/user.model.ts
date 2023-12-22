@@ -4,7 +4,9 @@ import mongoose from "mongoose"
  * 一个User document中会有2个id，一个叫“_id”,一个叫“id”
  *    _id：是任何document在mongoDB中都会被默认添加的唯一标识符
  *     id: 包含在clerk返回的用户信息中。本项目中使用的基本上都是这个属性。如果在各个网站都
- *          用同一个账号，如谷歌账号登录，那么这个id应该是相同的
+ *           用同一个账号，如谷歌账号登录，那么这个id应该是相同的。
+ *         这个id属性必须一并保存到数据库中。从clerk获取到用户信息后，使用id属性查询数据库，
+ *           才能获取用户的threads等信息。
  */
 
 // The Mongoose Schema constructor

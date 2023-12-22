@@ -1,3 +1,4 @@
+// 本文件的路径是 app/(root)/page.tsx，(root)不出现在路径中，所以本文件对应的路径是"/"
 import ThreadCard from "@/components/cards/ThreadCard"
 import { fetchPosts } from "@/lib/actions/thread.actions"
 import { currentUser } from "@clerk/nextjs"
