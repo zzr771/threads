@@ -10,12 +10,12 @@ async function Page() {
   if (userInfo?.onboarded) redirect("/")
 
   const userData = {
-    id: user?.id || "",
-    objectId: userInfo?._id || "",
-    username: user?.username || userInfo?.username || "",
-    name: user?.firstName || userInfo?.name || "",
-    bio: userInfo?.bio || "",
-    image: user?.imageUrl || userInfo?.image || "",
+    id: user.id,
+    objectId: userInfo?._id,
+    username: userInfo ? userInfo?.username : user.username,
+    name: userInfo ? userInfo?.name : user.firstName ?? "",
+    bio: userInfo ? userInfo?.bio : "",
+    image: userInfo ? userInfo?.image : user.imageUrl,
   }
   return (
     <main className="flex flex-col justify-start mx-auto max-w-3xl px-10 py-20">
