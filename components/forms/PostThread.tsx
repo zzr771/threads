@@ -9,9 +9,10 @@ import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod" // Zod 是一个以 TypeScript 为首的模式声明和验证库。 "模式 "广义地指任何数据类型，从简单的字符串到复杂的嵌套对象。配合react-hook-form使用的库，可以简化表单结构的创建方式（不需单独安装）
 
 import { usePathname, useRouter } from "next/navigation"
-// import { updateUser } from "@/lib/actions/user.actions"
 import { ThreadValidation } from "@/lib/validations/thread"
 import { createThread } from "@/lib/actions/thread.actions"
+
+import { useOrganization } from "@clerk/nextjs"
 
 interface Props {
   user: {
@@ -28,6 +29,7 @@ interface Props {
 export default function PostThread({ userId }: { userId: string }) {
   const router = useRouter()
   const pathname = usePathname()
+  const { organization } = useOrganization() // 注意这个不是异步函数
 
   const form = useForm({
     resolver: zodResolver(ThreadValidation),
@@ -38,7 +40,12 @@ export default function PostThread({ userId }: { userId: string }) {
   })
 
   async function onSubmit(values: z.infer<typeof ThreadValidation>) {
-    await createThread({ text: values.thread, author: userId, communityId: null, path: pathname })
+    await createThread({
+      text: values.thread,
+      author: userId,
+      communityId: organization ? organization.id : null,
+      path: pathname,
+    })
 
     router.push("/")
   }

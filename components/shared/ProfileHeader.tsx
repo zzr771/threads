@@ -7,15 +7,16 @@ interface Props {
   username: string
   imgUrl: string
   bio: string
+  type?: "User" | "Community"
 }
 
-export default function ProfileHeader({ accountId, authUserId, name, username, imgUrl, bio }: Props) {
+export default function ProfileHeader({ accountId, authUserId, name, username, imgUrl, bio, type }: Props) {
   return (
     <div className="flex w-full flex-col justify-center">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="relative h-20 w-20">
-            <Image src={imgUrl} alt="Profile Image" fill className="rounded-full shadow-2xl" />
+            <Image src={imgUrl} alt="Profile Image" fill className="rounded-full shadow-2xl object-cover" />
           </div>
 
           <div className="flex-1">
